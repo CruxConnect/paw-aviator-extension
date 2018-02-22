@@ -11,11 +11,9 @@ To install the Paw extension:
 2. Open Preferences
 3. Choose the _Extensions_ tab
 4. Click _Open Extensions Directory_
-5. Execute the following bash commands:
+5. Open a terminal at this location and execute the following bash command:
    ```sh
-   mkdir com.crux.AviatorJekyllTemplate
-   cd com.crux.AviatorJekyllTemplate
-   git clone git@github.com:CruxConnect/paw-aviator-extension.git
+   git clone https://github.com/CruxConnect/paw-aviator-extension.git com.crux.AviatorJekyllTemplate
    ```
 6. Return to Paw and click _Reload Installed Extensions_
 
