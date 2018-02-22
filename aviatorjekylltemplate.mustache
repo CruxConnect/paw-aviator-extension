@@ -1,0 +1,58 @@
+---
+title: {{{ title }}}
+name: {{{ name }}}
+position: {{{ position }}}
+method: {{{ method }}}
+description: {{{ short_description }}}
+right_code: |
+  ~~~ json
+{{{ body }}}
+  ~~~
+  {: title="Request" }
+
+  {{#response}}
+  ~~~ json
+{{{ response }}}
+  ~~~
+  {: title="Response" }
+  {{/response}}
+
+  {{#error}}
+  ~~~ json
+  {{{ error }}}
+  ~~~
+  {: title="Error" }
+  {{/error}}
+---
+{{{ long_description }}}
+
+{{{ response_codes }}}
+
+
+{{#curl_request}}
+~~~ bash
+{{{ curl_request }}}
+~~~
+{: title="Curl" }
+{{/curl_request}}
+
+{{#httpie_request}}
+~~~ bash
+{{{ httpie_request }}}
+~~~
+{: title="HTTPie" }
+{{/httpie_request}}
+
+{{#python_request}}
+~~~ python
+{{{ python_request }}}
+~~~
+{: title="Python (requests)" }
+{{/python_request}}
+
+{{#node_request}}
+~~~ javascript
+{{{ node_request }}}
+~~~
+{: title="Node.js" }
+{{/node_request}}
