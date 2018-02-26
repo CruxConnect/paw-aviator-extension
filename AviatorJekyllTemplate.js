@@ -88,6 +88,7 @@ AviatorJekyllTemplate = function() {
       group: self.getGroup(request.parent),
       name: request.name,
       title: self.path(request.urlBase),
+      // 2 place decimal ensures proper page positioning. e.g. page 3.10 comes after page 3.9, not page 3.1
       position: (request.parent.order + (request.order / 100) + 1).toFixed(2),
       method: request.method.toLowerCase(),
       short_description: short_description,
