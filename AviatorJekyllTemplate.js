@@ -84,12 +84,11 @@ AviatorJekyllTemplate = function() {
     var response_codes = request.description.split('# Response Codes').pop().split('# Error Response').shift().trim("\n")
     // var error = request.description.split('# Error Response').pop().trim("\n")
     var error = undefined // TODO: errors aren't yet defined.
-
     return Mustache.render(template, {
       group: self.getGroup(request.parent),
       name: request.name,
       title: self.path(request.urlBase),
-      position: request.order,
+      position: (request.parent.order + (request.order / 100) + 1).toFixed(2),
       method: request.method.toLowerCase(),
       short_description: short_description,
       body: self.prettify(request.body),
