@@ -70,7 +70,11 @@ AviatorJekyllTemplate = function() {
     var name = parent.name || ''
     return (parent.parent ? self.getGroup(parent.parent) + ' ⇾ ' : '') + name
   }
-  this.generateRequest = function(request) {
+  this.generateRequest = function(request, context=null) {
+    var visibility = ''
+    if(visvar = context.getEnvironmentVariableByName('visibility')) {
+      visibility = visvar.getCurrentValue()
+    }
     var template = readFile("aviatorjekylltemplate.mustache");
     // console.log('python_request', python(context, [request], options))
     // console.log('httpie_request', httpie(context, [request], options))
@@ -87,6 +91,7 @@ AviatorJekyllTemplate = function() {
     return Mustache.render(template, {
       group: self.getGroup(request.parent),
       name: request.name,
+      visibility: visibility,
       title: self.path(request.urlBase),
       // 2 place decimal ensures proper page positioning. e.g. page 3.10 comes after page 3.9, not page 3.1
       position: (request.parent.order + (request.order / 100) + 1).toFixed(2),
@@ -107,7 +112,9 @@ AviatorJekyllTemplate = function() {
     // console.log('context', JSON.stringify(context))
     // console.log('requests', JSON.stringify(requests))
     // console.log('options', JSON.stringify(options))
-    return self.multipleRequestNotice(requests) + requests.map(self.generateRequest).join("\n\n\n");
+    return self.multipleRequestNotice(requests) +
+      requests.map((request) => self.generateRequest(request, context))
+      .join("\n\n\n");
   }
 }
 
